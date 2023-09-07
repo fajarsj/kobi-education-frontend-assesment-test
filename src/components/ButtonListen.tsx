@@ -28,7 +28,7 @@ const ButtonListen = ({ title, disabled }: ButtonListenProps) => {
     <div className="flex items-center gap-[26px]">
       <h4 className="text-[#505050] text-lg font-semibold leading-6">{title}</h4>
       <Button
-        color={disabled ? 'gray' : 'warning'}
+        color={disabled || isEnded ? 'gray' : 'warning'}
         size="sm"
         theme={customButton}
         className="rounded"
