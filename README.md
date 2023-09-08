@@ -12,8 +12,10 @@ A frontend service for Kobi Education web app built on top of [Next.js](https://
 consists of:
 - [Next.js](https://nextjs.org/)
 - [TypeScript](https://www.typescriptlang.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
+- [Tailwind CSS](https://tailwindcss.com/) along with [Flowbite](https://flowbite.com/)
+- [HeroIcons](https://heroicons.com/)
 - [Zustand](https://github.com/pmndrs/zustand) for client-side state management
+- [SVGR](https://react-svgr.com/) for transforming SVGs into React components
 
 For unit tests:
 - [Jest](https://jestjs.io/) with [react-testing-library](https://testing-library.com/docs/react-testing-library/intro/)
