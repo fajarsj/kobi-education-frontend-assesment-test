@@ -1,34 +1,44 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Fajar Saputro Juliantoro (Kobi Education Frontend Assesment Test 2023)
 
-## Getting Started
+A frontend service for Kobi Education web app built on top of [Next.js](https://nextjs.org/). Project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-First, run the development server:
+## Contents
+- [Tech Stacks](#tech-stacks)
+- [Learn More about Next.js](#learn-more-about-nextjs)
+- [Setup Local Dev Server](#setup-local-dev-server)
+- [Project Flow (oversimplified)](#project-flow)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+## Tech Stacks
+consists of:
+- [Next.js](https://nextjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Zustand](https://github.com/pmndrs/zustand) for client-side state management
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+For unit tests:
+- [Jest](https://jestjs.io/) with [react-testing-library](https://testing-library.com/docs/react-testing-library/intro/)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+For code quality/linting:
+- [ESLint](https://eslint.org/)
+- [Prettier](https://prettier.io
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
+## Learn More about Next.js
 To learn more about Next.js, take a look at the following resources:
 
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+You can check out more on [the Next.js GitHub repository](https://github.com/vercel/next.js/).
 
-## Deploy on Vercel
+## Setup Local Dev Server
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+# make sure all dependencies are installed and updated
+yarn install
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+# run the dev server
+yarn dev
+```
+
+## Project Flow
+![kobi-education drawio](https://github.com/fajarsj/kobi-education-frontend-assesment-test/assets/22906687/5f61c465-939d-428e-a03d-572281f82133)
