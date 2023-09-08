@@ -26,7 +26,10 @@ const QuestionStatus = () => {
   }
 
   return (
-    <div className="rounded-lg shadow-[0px_20px_40px_0px_rgba(102,102,102,0.16)] bg-white w-full p-6 flex flex-col gap-8">
+    <div
+      className="rounded-lg shadow-[0px_20px_40px_0px_rgba(102,102,102,0.16)] bg-white w-full p-6 flex flex-col gap-8"
+      data-testid="question-status"
+    >
       <div className="flex flex-col gap-3">
         <h5 className="text-base font-semibold text-[#292929] leading-5">Question Status</h5>
         <hr />

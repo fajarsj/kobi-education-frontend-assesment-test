@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import Logo from '@/components/Logo'
 
-describe('Header', () => {
+describe('Logo', () => {
   it('renders correctly', () => {
     render(<Logo />)
     const logo = screen.getByTestId('logo')

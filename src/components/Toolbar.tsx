@@ -21,7 +21,7 @@ const Toolbar = ({ onClickSubmit }: ToolbarProps) => {
   }
 
   return (
-    <div className="flex border-b items-end">
+    <div className="flex border-b items-end" data-testid="toolbar">
       <h1 className="text-xl font-semibold leading-7 text-[#505050] w-[300px] ml-8 mb-[6px]">Reading Test</h1>
       <ul className="flex gap-1">
         <li className="bg-gray-50 px-4 py-2 border-t border-l border-r rounded-t text-sm leading-6 text-gray-800">

@@ -12,8 +12,11 @@ interface QuestionLetterProps {
 
 const QuestionLetter = ({ character, title, checkboxLabel }: QuestionLetterProps) => {
   return (
-    <div className="flex gap-[14px] items-center">
-      <div className="bg-[#064C85] w-8 h-8 rounded flex items-center justify-center text-white text-base font-normal">
+    <div className="flex gap-[14px] items-center" data-testid="question-letter">
+      <div
+        className="bg-[#064C85] w-8 h-8 rounded flex items-center justify-center text-white text-base font-normal"
+        data-testid="question-letter-character"
+      >
         {character}
       </div>
       {checkboxLabel && (
@@ -22,6 +25,7 @@ const QuestionLetter = ({ character, title, checkboxLabel }: QuestionLetterProps
       <label
         className="leading-6 text-base font-normal text-[#505050]"
         htmlFor={checkboxLabel && convertStringToCamelCase(checkboxLabel)}
+        data-testid="question-letter-title"
       >
         {title}
       </label>

@@ -34,7 +34,7 @@ const FormAdmin = () => {
   }
 
   return (
-    <>
+    <div data-testid="dashboard">
       <Navbar type="admin" />
       <div className="mt-6">
         <Toolbar onClickSubmit={handleSubmit} />
@@ -89,7 +89,7 @@ const FormAdmin = () => {
           </DrawerQuestionTypes>
         </DndProvider>
       </div>
-    </>
+    </div>
   )
 }
 

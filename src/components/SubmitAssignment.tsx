@@ -17,7 +17,11 @@ const SubmitAssignment = () => {
 
   return (
     <>
-      <Button className="px-[176px] py-4 mt-[71px] bg-[#064C85]" onClick={() => props.setOpenModal('pop-up')}>
+      <Button
+        className="px-[176px] py-4 mt-[71px] bg-[#064C85]"
+        onClick={() => props.setOpenModal('pop-up')}
+        data-testid="submit-assignment"
+      >
         Submit
       </Button>
       <Modal show={props.openModal === 'pop-up'} size="md" popup onClose={() => props.setOpenModal(undefined)}>
