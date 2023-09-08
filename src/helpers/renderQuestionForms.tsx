@@ -7,57 +7,90 @@ import FillInTheBlankTransparent from '@/components/questionTypes/FillInTheBlank
 import SelectLetter from '@/components/questionTypes/SelectLetter'
 import SelectPassage from '@/components/questionTypes/SelectPassage'
 import Wrapper from '@/components/questionForms/Wrapper'
-import { FormTypes } from '@/interfaces/FormTypes'
+import { FormsInterface, DefaultFormInterface, MultipleChoiceInterface } from '@/interfaces/FormsInterface'
+import React from 'react'
 
 interface RenderFormQuestionProps {
-  questionList: FormTypes[]
+  questionList: FormsInterface
 }
 
 const renderFormQuestion = ({ questionList }: RenderFormQuestionProps) => {
-  const renderComponent = questionList.map((question) => {
-    switch (question.type) {
+  let renderComponent: React.ReactNode[] = []
+
+  Object.keys(questionList).map((key) => {
+    const components: React.ReactNode[] = []
+
+    switch (key) {
       case QuestionTypesEnum.MULTIPLE_CHOICE:
-        return (
-          <Wrapper title="Type Soal 1" id={question.id}>
-            <MultipleChoice id={question.id} />
-          </Wrapper>
+        questionList[key].forEach((question) =>
+          components.push(
+            <Wrapper title="Type Soal 1" id={question.id} type={question.type}>
+              <MultipleChoice id={question.id} />
+            </Wrapper>
+          )
         )
+        renderComponent = [...renderComponent, ...components]
+        return
       case QuestionTypesEnum.CHECKBOX:
-        return (
-          <Wrapper title="Type Soal 2" id={question.id}>
-            <Checkboxes />
-          </Wrapper>
+        questionList[key].forEach((question) =>
+          components.push(
+            <Wrapper title="Type Soal 2" id={question.id} type={question.type}>
+              <Checkboxes />
+            </Wrapper>
+          )
         )
+        renderComponent = [...renderComponent, ...components]
+        return
       case QuestionTypesEnum.FILL_IN_THE_BLANK_IMAGE:
-        return (
-          <Wrapper title="Type Soal 3" id={question.id}>
-            <FillInTheBlankImage withoutImage />
-          </Wrapper>
+        questionList[key].forEach((question) =>
+          components.push(
+            <Wrapper title="Type Soal 3" id={question.id} type={question.type}>
+              <FillInTheBlankImage withoutImage />
+            </Wrapper>
+          )
         )
+        renderComponent = [...renderComponent, ...components]
+        return
       case QuestionTypesEnum.FILL_IN_THE_BLANK:
-        return (
-          <Wrapper title="Type Soal 4" id={question.id}>
-            <FillInTheBlank />
-          </Wrapper>
+        questionList[key].forEach((question) =>
+          components.push(
+            <Wrapper title="Type Soal 4" id={question.id} type={question.type}>
+              <FillInTheBlank />
+            </Wrapper>
+          )
         )
+        renderComponent = [...renderComponent, ...components]
+        return
       case QuestionTypesEnum.FILL_IN_THE_BLANK_TRANSPARENT:
-        return (
-          <Wrapper title="Type Soal 5" id={question.id}>
-            <FillInTheBlankTransparent />
-          </Wrapper>
+        questionList[key].forEach((question) =>
+          components.push(
+            <Wrapper title="Type Soal 5" id={question.id} type={question.type}>
+              <FillInTheBlankTransparent />
+            </Wrapper>
+          )
         )
+        renderComponent = [...renderComponent, ...components]
+        return
       case QuestionTypesEnum.SELECT_LETTER:
-        return (
-          <Wrapper title="Type Soal 6" id={question.id}>
-            <SelectLetter />
-          </Wrapper>
+        questionList[key].forEach((question) =>
+          components.push(
+            <Wrapper title="Type Soal 6" id={question.id} type={question.type}>
+              <SelectLetter />
+            </Wrapper>
+          )
         )
+        renderComponent = [...renderComponent, ...components]
+        return
       case QuestionTypesEnum.SELECT_PASSAGE:
-        return (
-          <Wrapper title="Type Soal 7" id={question.id}>
-            <SelectPassage />
-          </Wrapper>
+        questionList[key].forEach((question) =>
+          components.push(
+            <Wrapper title="Type Soal 7" id={question.id} type={question.type}>
+              <SelectPassage />
+            </Wrapper>
+          )
         )
+        renderComponent = [...renderComponent, ...components]
+        return
     }
   })
 

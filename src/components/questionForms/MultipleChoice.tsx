@@ -6,6 +6,8 @@ import { convertStringToCamelCase } from '@/utils/stringUtils'
 import { TrashIcon, CheckIcon } from '@heroicons/react/24/outline'
 import { useAppStore } from '@/lib/store'
 import { QuestionTypesEnum } from '@/interfaces/QuestionTypes'
+import { MultipleChoiceInterface } from '@/interfaces/FormsInterface'
+import { customRadio } from '@/utils/theme'
 
 interface MultipleChoiceProps {
   id: string
@@ -13,7 +15,7 @@ interface MultipleChoiceProps {
 
 const MultipleChoice = ({ id }: MultipleChoiceProps) => {
   const { updateForms, findForms } = useAppStore()
-  const defaultForm = findForms(id)
+  const defaultForm: MultipleChoiceInterface = findForms(id, QuestionTypesEnum.MULTIPLE_CHOICE)
   const [optionsList, setOptionsList] = useState<string[]>(defaultForm.options || [])
   const [openModal, setOpenModal] = useState<boolean>()
   const [optionName, setOptionName] = useState('')
@@ -46,12 +48,16 @@ const MultipleChoice = ({ id }: MultipleChoiceProps) => {
   }
 
   const handleApply = () => {
-    updateForms(id, {
+    updateForms(
       id,
-      type: QuestionTypesEnum.MULTIPLE_CHOICE,
-      options: optionsList,
-      description: enterQuestionValue
-    })
+      {
+        id,
+        type: QuestionTypesEnum.MULTIPLE_CHOICE,
+        options: optionsList,
+        description: enterQuestionValue
+      },
+      QuestionTypesEnum.MULTIPLE_CHOICE
+    )
 
     props.setShowToast(!props.showToast)
     setTimeout(() => props.setShowToast(false), 2000)
@@ -84,7 +90,7 @@ const MultipleChoice = ({ id }: MultipleChoiceProps) => {
               {optionsList.map((option) => (
                 <div className="flex justify-between" key={option}>
                   <div className="flex items-center gap-2">
-                    <Radio id={convertStringToCamelCase(option)} value={option} name="options" />
+                    <Radio id={convertStringToCamelCase(option)} value={option} name="options" theme={customRadio} />
                     <Label htmlFor={convertStringToCamelCase(option)}>{option}</Label>
                   </div>
                   <p

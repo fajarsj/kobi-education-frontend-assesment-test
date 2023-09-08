@@ -2,6 +2,7 @@
 
 import { Label, Radio } from 'flowbite-react'
 import { convertStringToCamelCase } from '@/utils/stringUtils'
+import { customRadio } from '@/utils/theme'
 
 interface MultipleChoicesProps {
   title: string
@@ -17,7 +18,7 @@ const MultipleChoices = ({ title, options, id }: MultipleChoicesProps) => {
         <div className="flex flex-col gap-2">
           {options.map((option) => (
             <div className="flex items-center gap-4" key={`${option}-${id}`}>
-              <Radio id={convertStringToCamelCase(`${option}-${id}`)} name={id} value={option} />
+              <Radio id={convertStringToCamelCase(`${option}-${id}`)} name={id} value={option} theme={customRadio} />
               <Label htmlFor={convertStringToCamelCase(`${option}-${id}`)}>{option}</Label>
             </div>
           ))}

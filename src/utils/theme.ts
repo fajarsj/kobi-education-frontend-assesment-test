@@ -36,3 +36,15 @@ export const customProgress: CustomFlowbiteTheme['progress'] = {
     yellow: 'bg-[#FB8818]'
   }
 }
+
+export const customCheckbox: CustomFlowbiteTheme['checkbox'] = {
+  root: {
+    base: 'h-6 w-6 rounded border-2 border-[#292929] bg-white focus:ring-2 focus:ring-gray-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-gray-600 text-gray-600'
+  }
+}
+
+export const customRadio: CustomFlowbiteTheme['radio'] = {
+  root: {
+    base: 'h-6 w-6 border border-gray-300 focus:ring-2 focus:ring-[#064C85] dark:border-gray-600 dark:bg-gray-700 dark:focus:bg-[#064C85] dark:focus:ring-[#064C85] text-[#064C85]'
+  }
+}

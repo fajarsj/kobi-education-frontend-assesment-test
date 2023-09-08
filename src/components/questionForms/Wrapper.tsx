@@ -1,17 +1,19 @@
 import React from 'react'
 import { TrashIcon } from '@heroicons/react/24/outline'
 import { useAppStore } from '@/lib/store'
+import { QuestionTypesEnum } from '@/interfaces/QuestionTypes'
 
 interface FormQuestionWrapperProps {
   children: React.ReactNode
   title: string
   id: string
+  type: QuestionTypesEnum
 }
 
-const FormQuestionWrapper = ({ children, title, id }: FormQuestionWrapperProps) => {
-  const { removeFromForms, forms } = useAppStore()
+const FormQuestionWrapper = ({ children, title, id, type }: FormQuestionWrapperProps) => {
+  const { removeFromForms } = useAppStore()
 
-  const handleDelete = () => removeFromForms(id)
+  const handleDelete = () => removeFromForms(id, type)
 
   return (
     <div className="border border-[#CCCCCC] py-8 px-7 bg-white flex flex-col gap-6">

@@ -25,6 +25,13 @@
       "@/lib/slices/*": ["src/lib/slices/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "./jest-setup.ts",
+    "@testing-library/jest-dom"
+  ],
   "exclude": ["node_modules"]
 }

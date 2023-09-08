@@ -20,10 +20,13 @@ const FormAdmin = () => {
   const { addToForms, forms } = useAppStore()
 
   const handleQuestionCardDrop = (questionType: QuestionTypesEnum) => {
-    addToForms({
-      id: `${questionType}-${uuidv4()}`,
-      type: questionType
-    })
+    addToForms(
+      {
+        id: `${questionType}-${uuidv4()}`,
+        type: questionType
+      },
+      questionType
+    )
   }
 
   const handleSubmit = () => {

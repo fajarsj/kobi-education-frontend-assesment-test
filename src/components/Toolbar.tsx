@@ -1,9 +1,9 @@
 'use client'
 
-import { Button, Tooltip } from 'flowbite-react'
+import { Button } from 'flowbite-react'
 import PlusIcon from '@/components/icons/plus.svg'
 import { useAppStore } from '@/lib/store'
-import { customTootip, customButton } from '@/utils/theme'
+import { FormsInterface } from '@/interfaces/FormsInterface'
 
 interface ToolbarProps {
   onClickSubmit: () => void
@@ -11,6 +11,14 @@ interface ToolbarProps {
 
 const Toolbar = ({ onClickSubmit }: ToolbarProps) => {
   const { forms } = useAppStore()
+
+  let isSubmitDisabled = true
+
+  for (const key in forms) {
+    if (forms[key as keyof FormsInterface].length > 0) {
+      isSubmitDisabled = false
+    }
+  }
 
   return (
     <div className="flex border-b items-end">
@@ -32,11 +40,7 @@ const Toolbar = ({ onClickSubmit }: ToolbarProps) => {
           <PlusIcon />
           <span>Add Field</span>
         </button>
-        <Button
-          className="bg-[#064C85] rounded w-[163px] h-[40px]"
-          onClick={onClickSubmit}
-          disabled={forms.length === 0}
-        >
+        <Button className="bg-[#064C85] rounded w-[163px] h-[40px]" onClick={onClickSubmit} disabled={isSubmitDisabled}>
           <span className="text-xs font-normal leading-5">Submit</span>
         </Button>
       </div>
