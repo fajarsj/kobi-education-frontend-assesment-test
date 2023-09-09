@@ -154,7 +154,11 @@ const DashboardBody = () => {
               </div>
               {selectLetterForms.map((form: SelectLetterInterface) => (
                 <div key={form.id}>
-                  <SelectLetter options={form.forms?.options || []} questions={form.forms?.questions || []} />
+                  <SelectLetter
+                    options={form.forms?.options || []}
+                    questions={form.forms?.questions || []}
+                    startFrom={form.no}
+                  />
                 </div>
               ))}
             </>
@@ -216,7 +220,11 @@ const DashboardBody = () => {
               <ButtonListen title="Question 4-5" disabled />
               {selectPassageForms.map((form: SelectPassageInterface) => (
                 <div key={form.id}>
-                  <SelectPassage questions={form.forms?.questions || []} title={form.question || ''} />
+                  <SelectPassage
+                    questions={form.forms?.questions || []}
+                    title={form.question || ''}
+                    startFrom={form.no}
+                  />
                 </div>
               ))}
             </>

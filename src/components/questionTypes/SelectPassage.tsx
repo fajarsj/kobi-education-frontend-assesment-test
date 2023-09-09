@@ -5,9 +5,10 @@ import { QuestionInterface } from '@/interfaces/FormsInterface'
 interface SelectPassageProps {
   questions: QuestionInterface[]
   title: string
+  startFrom: number
 }
 
-const SelectPassage = ({ questions, title }: SelectPassageProps) => {
+const SelectPassage = ({ questions, title, startFrom }: SelectPassageProps) => {
   return (
     <div className="flex flex-col gap-6">
       <QuestionSubtitle title={title} />
@@ -35,7 +36,7 @@ const SelectPassage = ({ questions, title }: SelectPassageProps) => {
           </div>
         </li>
       </ul>
-      <ol className="list-decimal ml-8 flex flex-col gap-5" start={1}>
+      <ol className="list-decimal ml-8 flex flex-col gap-5" start={startFrom}>
         {questions?.map((question, index) => (
           // eslint-disable-next-line react/no-array-index-key
           <li key={`${question}-${index}`}>

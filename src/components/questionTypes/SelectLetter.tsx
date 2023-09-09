@@ -6,9 +6,10 @@ import { QuestionInterface } from '@/interfaces/FormsInterface'
 interface SelectLetterProps {
   options: string[]
   questions: QuestionInterface[]
+  startFrom: number
 }
 
-const SelectLetter = ({ options, questions }: SelectLetterProps) => {
+const SelectLetter = ({ options, questions, startFrom }: SelectLetterProps) => {
   const optionsValue = options?.map((_, index) => numberToLetter(index)) || []
   return (
     <div className="flex flex-col gap-6">
@@ -19,7 +20,7 @@ const SelectLetter = ({ options, questions }: SelectLetterProps) => {
           </li>
         ))}
       </ul>
-      <ol className="list-decimal ml-8 flex flex-col gap-5" start={13}>
+      <ol className="list-decimal ml-8 flex flex-col gap-5" start={startFrom}>
         {questions?.map((question, index) => (
           // eslint-disable-next-line react/no-array-index-key
           <li key={`${question}-${index}`}>
