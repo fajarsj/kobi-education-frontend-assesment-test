@@ -86,7 +86,7 @@ const DashboardBody = () => {
               <QuestionTitle title="lorem ipsum dolor sit amet, lorem ipsum dolor sit amet" italic />
               {fillInTheBlankForms.map((form: FillInTheBlankInterface) => (
                 <div key={form.id}>
-                  <FillInTheBlank title={form.title || ''} markdown={form.question || ''} />
+                  <FillInTheBlank title={form.title || ''} markdown={form.question || ''} startFrom={form.no} />
                 </div>
               ))}
             </>
@@ -108,7 +108,7 @@ const DashboardBody = () => {
               </div>
               {fillInTheBlankImageForms.map((form: FillInTheBlankImageInterface) => (
                 <div key={form.id}>
-                  <FillInTheBlankImage questions={form.forms?.questions || []} />
+                  <FillInTheBlankImage questions={form.forms?.questions || []} startFrom={form.no} />
                 </div>
               ))}
             </>

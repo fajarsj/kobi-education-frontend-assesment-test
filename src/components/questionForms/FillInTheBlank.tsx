@@ -60,7 +60,7 @@ const FillInTheBlank = ({ id }: FillInTheBlankProps) => {
       <div className="w-full">
         <div className="flex flex-col gap-4">
           <div className="flex flex-col gap-2">
-            <Label value="No" className="font-normal text-base text-[#505050] leading-6" />
+            <Label value="Start from" className="font-normal text-base text-[#505050] leading-6" />
             <TextInput
               type="number"
               color="white"
@@ -87,7 +87,7 @@ const FillInTheBlank = ({ id }: FillInTheBlankProps) => {
               color="white"
               value={formsValues.question}
               onChange={(event) => handleChangeFormField(event, 'question')}
-              placeholder="Write the questions. And add ** before and after the answer. For example: Today is *raining*"
+              placeholder="Write the questions. And add ** before and after the answer. For example: Today is **raining** tommorow is **not**"
             />
           </div>
           <div className="flex flex-col gap-2">

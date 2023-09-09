@@ -4,9 +4,10 @@ import { QuestionInterface } from '@/interfaces/FormsInterface'
 
 interface FillInTheBlankImageProps {
   questions: QuestionInterface[]
+  startFrom: number
 }
 
-const FillInTheBlankImage = ({ questions }: FillInTheBlankImageProps) => {
+const FillInTheBlankImage = ({ questions, startFrom }: FillInTheBlankImageProps) => {
   return (
     <div>
       <div className="relative h-[450px] w-full mb-12">
@@ -18,7 +19,7 @@ const FillInTheBlankImage = ({ questions }: FillInTheBlankImageProps) => {
           sizes="100%"
         />
       </div>
-      <ol className="flex flex-col gap-6 list-decimal ml-4" start={7}>
+      <ol className="flex flex-col gap-6 list-decimal ml-4" start={startFrom}>
         {questions.map((question) => (
           <li className="pl-4" key={question.question}>
             <p className="text-base font-normal leading-6 flex gap-4 text-[#292929]">

@@ -84,7 +84,7 @@ const FillInTheBlankImage = ({ id }: FillInTheBlankImageProps) => {
       <div className="w-full">
         <div className="flex flex-col gap-4">
           <div className="flex flex-col gap-2">
-            <Label value="No" className="font-normal text-base text-[#505050] leading-6" />
+            <Label value="Start from" className="font-normal text-base text-[#505050] leading-6" />
             <TextInput type="number" color="white" onChange={handlOnChangeNo} value={noValue} min="0" />
           </div>
           <Label value="Add Question" className="font-normal text-base text-[#505050] leading-6" />
