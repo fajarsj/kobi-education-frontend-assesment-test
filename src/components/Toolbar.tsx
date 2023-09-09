@@ -4,6 +4,7 @@ import { Button } from 'flowbite-react'
 import PlusIcon from '@/components/icons/plus.svg'
 import { useAppStore } from '@/lib/store'
 import { FormsInterface } from '@/interfaces/FormsInterface'
+import { QuestionTypesEnum } from '@/interfaces/QuestionTypes'
 
 interface ToolbarProps {
   onClickSubmit: () => void
@@ -15,7 +16,7 @@ const Toolbar = ({ onClickSubmit }: ToolbarProps) => {
   let isSubmitDisabled = true
 
   for (const key in forms) {
-    if (forms[key as keyof FormsInterface].length > 0) {
+    if (forms[key as keyof FormsInterface].length > 0 && key !== QuestionTypesEnum.FIELD_PROPERTIES) {
       isSubmitDisabled = false
     }
   }

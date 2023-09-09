@@ -1,6 +1,5 @@
 'use client'
 
-import { Table } from 'flowbite-react'
 import QuestionEditable from '@/components/typograhpy/QuestionEditable'
 
 const FillInTheBlankTable = () => {

@@ -1,6 +1,5 @@
 'use client'
 
-import { useState } from 'react'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import { v4 as uuidv4 } from 'uuid'
@@ -23,9 +22,20 @@ const FormAdmin = () => {
     addToForms(
       {
         id: `${questionType}-${uuidv4()}`,
-        type: questionType
+        type: questionType,
+        createdAt: new Date(),
+        no: 0,
+        pointSet: 0
       },
       questionType
+    )
+    setTimeout(
+      () =>
+        window.scrollTo({
+          top: document.body.scrollHeight,
+          behavior: 'smooth'
+        }),
+      500
     )
   }
 

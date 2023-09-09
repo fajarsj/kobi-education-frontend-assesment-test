@@ -20,9 +20,9 @@ const ContentEditable = ({ value, onChange }: ContentEditableProps) => {
     <span
       placeholder="..............................."
       contentEditable
-      className={`empty:before:content-[attr(placeholder)] empty:focus:before:content-[''] before:text-[#292929]  cursor-text outline-none text-[#FB8818] min-w-[110px] max-w-[220px] ${
+      className={`empty:before:content-[attr(placeholder)] empty:focus:before:content-[''] before:text-[#292929]  cursor-text outline-none text-[#FB8818] min-w-[110px] ${
         value && value.length > 0 ? 'underline' : ''
-      } decoration-[#292929] caret-[#292929]`}
+      } decoration-[#292929] caret-[#292929] inline-block break-all`}
       onInput={handleInput}
       suppressContentEditableWarning
       dangerouslySetInnerHTML={{ __html: initialValue! }}

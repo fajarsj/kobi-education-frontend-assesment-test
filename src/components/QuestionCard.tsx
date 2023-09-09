@@ -30,11 +30,11 @@ const QuestionCard = ({ title, imagePath, type, onDrop }: QuestionCardProps) => 
     })
   }))
 
-  const opacity = isDragging ? '40' : '100'
+  const opacity = isDragging ? 'opacity-40' : 'opacity-100'
 
   return (
     <div
-      className={`shadow-[0px_3px_12px_0px_rgba(0,0,0,0.09)] bg-[#F8F8FB] p-2 flex flex-col gap-3 rounded-[10px] opacity-${opacity}`}
+      className={`shadow-[0px_3px_12px_0px_rgba(0,0,0,0.09)] bg-[#F8F8FB] p-2 flex flex-col gap-3 rounded-[10px] ${opacity} hover:bg-[#fba33b] cursor-pointer transition`}
       ref={drag}
     >
       <div className="h-[147px] w-full relative bg-white">

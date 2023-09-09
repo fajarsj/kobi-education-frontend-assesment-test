@@ -5,5 +5,6 @@ export enum QuestionTypesEnum {
   FILL_IN_THE_BLANK = 'fillInTheBlank',
   FILL_IN_THE_BLANK_TRANSPARENT = 'fillInTheBlankTransparent',
   SELECT_LETTER = 'selectLetter',
-  SELECT_PASSAGE = 'selectPassage'
+  SELECT_PASSAGE = 'selectPassage',
+  FIELD_PROPERTIES = 'fieldProperties'
 }

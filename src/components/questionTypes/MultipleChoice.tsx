@@ -7,12 +7,16 @@ import { customRadio } from '@/utils/theme'
 interface MultipleChoicesProps {
   title: string
   id: string
+  no: number
   options: string[]
 }
 
-const MultipleChoices = ({ title, options, id }: MultipleChoicesProps) => {
+const MultipleChoices = ({ title, options, id, no }: MultipleChoicesProps) => {
   return (
     <fieldset className="flex gap-4" id="radio">
+      <div>
+        <legend className="mb-4 text-base font-medium leading-6 text-[#292929]">{no}.</legend>
+      </div>
       <div>
         <legend className="mb-4 text-base font-medium leading-6 text-[#292929]">{title}</legend>
         <div className="flex flex-col gap-2">

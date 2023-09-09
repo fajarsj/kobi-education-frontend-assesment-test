@@ -6,11 +6,11 @@ import { customCheckbox } from '@/utils/theme'
 
 interface QuestionLetterProps {
   character: string
-  title: string
-  checkboxLabel?: string
+  title?: string
+  withCheckbox?: boolean
 }
 
-const QuestionLetter = ({ character, title, checkboxLabel }: QuestionLetterProps) => {
+const QuestionLetter = ({ character, title, withCheckbox }: QuestionLetterProps) => {
   return (
     <div className="flex gap-[14px] items-center" data-testid="question-letter">
       <div
@@ -19,16 +19,18 @@ const QuestionLetter = ({ character, title, checkboxLabel }: QuestionLetterProps
       >
         {character}
       </div>
-      {checkboxLabel && (
-        <Checkbox id={convertStringToCamelCase(checkboxLabel)} className="ml-4" theme={customCheckbox} />
+      {withCheckbox && title && (
+        <Checkbox id={`${convertStringToCamelCase(title)}-${character}}`} className="ml-4" theme={customCheckbox} />
       )}
-      <label
-        className="leading-6 text-base font-normal text-[#505050]"
-        htmlFor={checkboxLabel && convertStringToCamelCase(checkboxLabel)}
-        data-testid="question-letter-title"
-      >
-        {title}
-      </label>
+      {title && (
+        <label
+          className="leading-6 text-base font-normal text-[#505050]"
+          htmlFor={title && `${convertStringToCamelCase(title)}-${character}}`}
+          data-testid="question-letter-title"
+        >
+          {title}
+        </label>
+      )}
     </div>
   )
 }

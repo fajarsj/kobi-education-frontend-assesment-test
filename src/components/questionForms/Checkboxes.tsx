@@ -1,39 +1,40 @@
-import { Label, Textarea, Radio, Button, TextInput, Toast } from 'flowbite-react'
+import { Label, Textarea, Button, Checkbox, TextInput, Toast } from 'flowbite-react'
 import React, { useState } from 'react'
-import { customTextarea, customButton, customRadio } from '@/utils/theme'
+import { customTextarea, customButton, customCheckbox } from '@/utils/theme'
 import PlusIcon from '@/components/icons/plus.svg'
-import { convertStringToCamelCase } from '@/utils/stringUtils'
 import { TrashIcon, CheckIcon } from '@heroicons/react/24/outline'
 import { useAppStore } from '@/lib/store'
 import { QuestionTypesEnum } from '@/interfaces/QuestionTypes'
-import { MultipleChoiceInterface } from '@/interfaces/FormsInterface'
+import { CheckboxesInterface } from '@/interfaces/FormsInterface'
+import QuestionLetter from '@/components/QuestionLetter'
+import { numberToLetter } from '@/utils/alphabetUtils'
 
-interface MultipleChoiceProps {
+interface CheckboxesProps {
   id: string
 }
 
-const MultipleChoice = ({ id }: MultipleChoiceProps) => {
+const Checkboxes = ({ id }: CheckboxesProps) => {
   const { updateForms, findForms } = useAppStore()
-  const defaultForm: MultipleChoiceInterface = findForms(id, QuestionTypesEnum.MULTIPLE_CHOICE)
-  const [optionsList, setOptionsList] = useState<string[]>(defaultForm.options || [])
+  const defaultForm: CheckboxesInterface = findForms(id, QuestionTypesEnum.CHECKBOX)
+  const [checkboxesList, setCheckboxesList] = useState<string[]>(defaultForm.checkboxes || [])
   const [questionValue, setQuestionValue] = useState(defaultForm.description)
   const [noValue, setNoValue] = useState(defaultForm.no)
   const [pointSetValue, setPointSetValue] = useState(defaultForm.pointSet)
   const [showToast, setShowToast] = useState(false)
   const props = { showToast, setShowToast }
 
-  const handleAddOption = () => setOptionsList((prevState) => [...prevState, ''])
+  const handleAddCheckbox = () => setCheckboxesList((prevState) => [...prevState, ''])
 
-  const handleChangeOption = (event: React.ChangeEvent<HTMLInputElement>, index: number) => {
-    const newOptionList = [...optionsList]
-    newOptionList[index] = event.target.value
-    setOptionsList(newOptionList)
+  const handleChangeCheckbox = (event: React.ChangeEvent<HTMLInputElement>, index: number) => {
+    const newCheckboxList = [...checkboxesList]
+    newCheckboxList[index] = event.target.value
+    setCheckboxesList(newCheckboxList)
   }
 
-  const handleDeleteOption = (index: number) => {
-    const newOptionList = [...optionsList]
-    newOptionList.splice(index, 1)
-    setOptionsList(newOptionList)
+  const handleDeleteCheckbox = (index: number) => {
+    const newCheckboxList = [...checkboxesList]
+    newCheckboxList.splice(index, 1)
+    setCheckboxesList(newCheckboxList)
   }
 
   const handleApply = () => {
@@ -41,13 +42,14 @@ const MultipleChoice = ({ id }: MultipleChoiceProps) => {
       id,
       {
         ...defaultForm,
-        type: QuestionTypesEnum.MULTIPLE_CHOICE,
-        options: optionsList,
+        id,
+        type: QuestionTypesEnum.CHECKBOX,
+        checkboxes: checkboxesList,
         description: questionValue,
         no: noValue,
         pointSet: pointSetValue
       },
-      QuestionTypesEnum.MULTIPLE_CHOICE
+      QuestionTypesEnum.CHECKBOX
     )
 
     props.setShowToast(!props.showToast)
@@ -77,25 +79,29 @@ const MultipleChoice = ({ id }: MultipleChoiceProps) => {
             onChange={handlOnChangeQuestion}
           />
         </div>
-        <fieldset className="flex flex-col gap-4" id="radio">
+        <fieldset className="flex flex-col gap-6" id="radio">
           <legend className="mb-4 font-normal text-base text-[#505050] leading-6">Set Correct Answer</legend>
-          {optionsList.length > 0 && (
+          {checkboxesList.length > 0 && (
             <div className="flex flex-col gap-4">
-              {optionsList.map((option, index) => (
+              {checkboxesList.map((checkbox, index) => (
                 // eslint-disable-next-line react/no-array-index-key
                 <div className="flex justify-between" key={index}>
-                  <div className="flex items-center gap-2">
-                    <Radio id={convertStringToCamelCase(option)} value={option} name="options" theme={customRadio} />
+                  <div className="flex items-center gap-4">
+                    <QuestionLetter character={numberToLetter(index)} />
+                    <Checkbox id={`checkbox-${index}`} theme={customCheckbox} />
+                    <Label className="flex" htmlFor={`checkbox-${index}`}>
+                      True?
+                    </Label>
                     <TextInput
                       type="text"
                       color="white"
-                      onChange={(event) => handleChangeOption(event, index)}
-                      value={option}
+                      onChange={(event) => handleChangeCheckbox(event, index)}
+                      value={checkbox}
                     />
                   </div>
                   <p
                     className="text-gray-600 text-sm cursor-pointer flex gap-2 items-center"
-                    onClick={() => handleDeleteOption(index)}
+                    onClick={() => handleDeleteCheckbox(index)}
                   >
                     <TrashIcon className="w-4 h-4" />
                     Delete
@@ -104,7 +110,7 @@ const MultipleChoice = ({ id }: MultipleChoiceProps) => {
               ))}
             </div>
           )}
-          <Button color="gray" size="sm" className="block w-max" onClick={handleAddOption}>
+          <Button color="gray" size="sm" className="block w-max" onClick={handleAddCheckbox}>
             <div className="flex items-center gap-2">
               <PlusIcon />
               Add Option
@@ -121,7 +127,7 @@ const MultipleChoice = ({ id }: MultipleChoiceProps) => {
           className="ml-auto mt-8 px-8"
           pill
           onClick={handleApply}
-          disabled={optionsList.length === 0}
+          disabled={checkboxesList.length === 0}
         >
           <span className="text-base font-bold leading-6">Apply</span>
         </Button>
@@ -141,4 +147,4 @@ const MultipleChoice = ({ id }: MultipleChoiceProps) => {
   )
 }
 
-export default MultipleChoice
+export default Checkboxes

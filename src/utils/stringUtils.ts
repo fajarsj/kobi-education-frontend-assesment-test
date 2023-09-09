@@ -13,3 +13,9 @@ export const convertStringToCamelCase = (str: string) => {
 
   return camelCaseText
 }
+
+export const separateTextByDoubleAsterisk = (text: string) => {
+  const regex = /(\*\*[^*]+\*\*)|([^*]+)/g
+  const matches = text.match(regex)
+  return matches
+}

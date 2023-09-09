@@ -1,10 +1,16 @@
 import QuestionSubtitle from '@/components/typograhpy/QuestionSubtitle'
 import QuestionSelect from '@/components/QuestionSelect'
+import { QuestionInterface } from '@/interfaces/FormsInterface'
 
-const SelectPassage = () => {
+interface SelectPassageProps {
+  questions: QuestionInterface[]
+  title: string
+}
+
+const SelectPassage = ({ questions, title }: SelectPassageProps) => {
   return (
     <div className="flex flex-col gap-6">
-      <QuestionSubtitle title="Are the following statements true, false or not given according to the information in the passage?" />
+      <QuestionSubtitle title={title} />
       <ul className="flex flex-col gap-6">
         <li>
           <div className="flex gap-4 items-center">
@@ -30,16 +36,14 @@ const SelectPassage = () => {
         </li>
       </ul>
       <ol className="list-decimal ml-8 flex flex-col gap-5" start={1}>
-        <li>
-          <div className="ml-5">
-            <QuestionSelect options={['True', 'False', 'Not Given']} title="Began producing the first automobiles" />
-          </div>
-        </li>
-        <li>
-          <div className="ml-5">
-            <QuestionSelect options={['True', 'False', 'Not Given']} title="Began producing the first automobiles" />
-          </div>
-        </li>
+        {questions?.map((question, index) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <li key={`${question}-${index}`}>
+            <div className="ml-5">
+              <QuestionSelect options={['True', 'False', 'Not Given']} title={question.question} />
+            </div>
+          </li>
+        ))}
       </ol>
     </div>
   )

@@ -1,26 +1,22 @@
 import QuestionLetter from '@/components/QuestionLetter'
 import QuestionSubtitle from '@/components/typograhpy/QuestionSubtitle'
+import { numberToLetter } from '@/utils/alphabetUtils'
 
-const Checkboxes = () => {
+interface CheckboxesProps {
+  title: string
+  checkboxes: string[]
+}
+
+const Checkboxes = ({ title, checkboxes }: CheckboxesProps) => {
   return (
     <div className="flex flex-col gap-4">
-      <QuestionSubtitle title="Write the correct letters in boxes 19-21 on your answer sheet" />
+      <QuestionSubtitle title={title} />
       <ul className="flex flex-col gap-[14px]">
-        <li>
-          <QuestionLetter character="A" title="Germany" checkboxLabel="Germany" />
-        </li>
-        <li>
-          <QuestionLetter character="B" title="Germany" checkboxLabel="Germany" />
-        </li>
-        <li>
-          <QuestionLetter character="C" title="Germany" checkboxLabel="Germany" />
-        </li>
-        <li>
-          <QuestionLetter character="D" title="Germany" checkboxLabel="Germany" />
-        </li>
-        <li>
-          <QuestionLetter character="E" title="Germany" checkboxLabel="Germany" />
-        </li>
+        {checkboxes.map((checkbox, index) => (
+          <li key={checkbox}>
+            <QuestionLetter character={numberToLetter(index)} title={checkbox} withCheckbox />
+          </li>
+        ))}
       </ul>
     </div>
   )

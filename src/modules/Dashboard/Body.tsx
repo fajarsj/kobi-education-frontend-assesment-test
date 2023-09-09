@@ -15,13 +15,22 @@ import ImageEssay from '@/components/questionTypes/ImageEssay'
 import FillInTheBlankTable from '@/components/questionTypes/FillInTheBlankTable'
 import Checkboxes from '@/components/questionTypes/Checkboxes'
 import SelectPassage from '@/components/questionTypes/SelectPassage'
-import { Button } from 'flowbite-react'
 import { useAppStore } from '@/lib/store'
 import { QuestionTypesEnum } from '@/interfaces/QuestionTypes'
-import { MultipleChoiceInterface } from '@/interfaces/FormsInterface'
+import {
+  MultipleChoiceInterface,
+  CheckboxesInterface,
+  FieldPropertiesInterface,
+  FillInTheBlankInterface,
+  FillInTheBlankTransparentInterface,
+  SelectLetterInterface,
+  SelectPassageInterface,
+  FillInTheBlankImageInterface
+} from '@/interfaces/FormsInterface'
 
 const DashboardBody = () => {
   const { getSpesificForms } = useAppStore()
+  const [fieldPropertiesForms]: FieldPropertiesInterface[] = getSpesificForms(QuestionTypesEnum.FIELD_PROPERTIES)
   const multipleChoiceForms = getSpesificForms(QuestionTypesEnum.MULTIPLE_CHOICE)
   const fillInTheBlankForms = getSpesificForms(QuestionTypesEnum.FILL_IN_THE_BLANK)
   const fillInTheBlankImageForms = getSpesificForms(QuestionTypesEnum.FILL_IN_THE_BLANK_IMAGE)
@@ -34,10 +43,8 @@ const DashboardBody = () => {
     <div className="flex flex-col items-center mb-[122px] w-full">
       <div className="flex flex-col gap-10 w-full ">
         <div className="w-[560px] flex flex-col gap-4">
-          <h2 className="text-xl font-semibold leading-7 text-gray-900">Listening Tip</h2>
-          <p className="text-sm font-normal leading-5 text-gray-500">
-            Whether you have a team of 2 or 200, our shared team inboxes keep everyone on the same page and in the loop.
-          </p>
+          <h2 className="text-xl font-semibold leading-7 text-gray-900">{fieldPropertiesForms.title}</h2>
+          <p className="text-sm font-normal leading-5 text-gray-500">{fieldPropertiesForms.question}</p>
         </div>
         <MediaPlayer />
         <div className="flex flex-col gap-7">
@@ -50,12 +57,17 @@ const DashboardBody = () => {
           {multipleChoiceForms.length > 0 && (
             <>
               <SectionDivider title="Part 1" subtitle="Question 1" />
-              <ButtonListen title={`Question 1-${multipleChoiceForms.length}`} disabled />
+              <ButtonListen title={`Question 1-3`} disabled />
               <QuestionTitle title="lorem ipsum dolor sit amet, lorem ipsum dolor sit amet" italic />
-              <ul className="list-decimal ml-4 flex flex-col gap-6">
+              <ul className="flex flex-col gap-6">
                 {multipleChoiceForms.map((form: MultipleChoiceInterface) => (
-                  <li className="pl-4" key={form.id}>
-                    <MultipleChoice title={form.description || ''} id={form.id} options={form.options || []} />
+                  <li key={form.id}>
+                    <MultipleChoice
+                      title={form.description || ''}
+                      id={form.id}
+                      options={form.options || []}
+                      no={form.no}
+                    />
                   </li>
                 ))}
               </ul>
@@ -72,9 +84,9 @@ const DashboardBody = () => {
             <>
               <ButtonListen title="Question 4-6" />
               <QuestionTitle title="lorem ipsum dolor sit amet, lorem ipsum dolor sit amet" italic />
-              {fillInTheBlankForms.map((form: MultipleChoiceInterface) => (
+              {fillInTheBlankForms.map((form: FillInTheBlankInterface) => (
                 <div key={form.id}>
-                  <FillInTheBlank />
+                  <FillInTheBlank title={form.title || ''} markdown={form.question || ''} />
                 </div>
               ))}
             </>
@@ -94,9 +106,9 @@ const DashboardBody = () => {
                 <QuestionTitle title="lorem ipsum dolor sit amet, lorem ipsum dolor sit amet" italic />
                 <QuestionTitle title="Write the correct letter, A-G next to questions 11-13" />
               </div>
-              {fillInTheBlankImageForms.map((form: MultipleChoiceInterface) => (
+              {fillInTheBlankImageForms.map((form: FillInTheBlankImageInterface) => (
                 <div key={form.id}>
-                  <FillInTheBlankImage />
+                  <FillInTheBlankImage questions={form.forms?.questions || []} />
                 </div>
               ))}
             </>
@@ -114,11 +126,13 @@ const DashboardBody = () => {
               <div className="flex flex-col gap-2">
                 <QuestionTitle title="Answer the following questions NO MORE THAN THREE WORDS AND/OR NUMBER" italic />
               </div>
-              {fillInTheBlankImageTransparent.map((form: MultipleChoiceInterface) => (
-                <div key={form.id}>
-                  <FillInTheBlankTransparent />
-                </div>
-              ))}
+              <ol className="flex flex-col gap-6 ">
+                {fillInTheBlankImageTransparent.map((form: FillInTheBlankTransparentInterface) => (
+                  <li className="pl-4" key={form.id}>
+                    <FillInTheBlankTransparent title={form.question || ''} no={form.no} />
+                  </li>
+                ))}
+              </ol>
             </>
           )}
         </div>
@@ -138,9 +152,9 @@ const DashboardBody = () => {
                 />
                 <QuestionTitle title="Match each description with the correct automobile brand A-G. Write the correct letter A-G in boxes 1-6 on your answer Brands" />
               </div>
-              {selectLetterForms.map((form: MultipleChoiceInterface) => (
+              {selectLetterForms.map((form: SelectLetterInterface) => (
                 <div key={form.id}>
-                  <SelectLetter />
+                  <SelectLetter options={form.forms?.options || []} questions={form.forms?.questions || []} />
                 </div>
               ))}
             </>
@@ -183,9 +197,9 @@ const DashboardBody = () => {
               <div className="flex flex-col gap-2">
                 <QuestionTitle title="Choose THREE letters, A-F" italic />
               </div>
-              {checkboxForms.map((form: MultipleChoiceInterface) => (
+              {checkboxForms.map((form: CheckboxesInterface) => (
                 <div key={form.id}>
-                  <Checkboxes />
+                  <Checkboxes checkboxes={form.checkboxes || []} title={form.description || ''} />
                 </div>
               ))}
             </>
@@ -200,9 +214,9 @@ const DashboardBody = () => {
           {selectPassageForms.length > 0 && (
             <>
               <ButtonListen title="Question 4-5" disabled />
-              {selectPassageForms.map((form: MultipleChoiceInterface) => (
+              {selectPassageForms.map((form: SelectPassageInterface) => (
                 <div key={form.id}>
-                  <SelectPassage />
+                  <SelectPassage questions={form.forms?.questions || []} title={form.question || ''} />
                 </div>
               ))}
             </>
